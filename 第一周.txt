@@ -1,0 +1,651 @@
+### 第1周第1套
+#### 1. 什么是哈希表（Hash Table）？如何解决哈希冲突？（5 分）
+
+**答案**:
+原理：通过哈希函数将键映射到数组索引。
+冲突解决：
+链地址法：每个槽位维护链表，冲突元素存入链表。
+开放寻址法：冲突时寻找下一个空槽（如线性探测）。
+
+#### 2. Ref和Out的区别是什么？（5分）
+
+**答案**:
+Ref：传入的参数需先初始化，可读取和修改。
+Out：传入的参数无需初始化，但必须在方法内赋值。
+
+#### 3.  装箱和拆箱是什么？哪个消耗更高？（5分）
+
+**答案**:
+装箱：值类型隐式转为引用类型。
+拆箱：引用类型显式转回值类型。
+消耗：装箱消耗更高需创建对象、复制数据，拆箱也有开销但低于装箱。
+
+#### 4.  什么是 MVC 架构？简述各部分职责。（5 分）
+
+**答案**:
+ Model：数据和业务逻辑。
+ View：用户界面，展示数据。
+ Controller：处理用户输入，协调 Model 和 View。
+
+#### 5.  简述 TCP 和 UDP 的区别。（5 分）
+
+**答案**:
+ TCP：面向连接，可靠传输，有序，有重传机制，开销大。
+ UDP：无连接，不可靠传输，无序，开销小，适用于实时性要求高的场景（如视频流）。
+
+#### 6.  C# 中接口（Interface）和抽象类（Abstract Class）的区别是什么？（5 分）
+
+**答案**:
+接口：仅声明方法 / 属性，支持多实现，无字段和构造函数。
+抽象类：可包含抽象和具体方法，单继承，有完整类结构。
+
+#### 7. Unity 中如何实现多语言本地化？（5 分）
+
+**答案**:
+创建语言文件（如 JSON/CSV）存储键值对。
+运行时根据系统语言加载对应文件。
+通过脚本动态更新 UI 文本。
+
+#### 8.  简述递归算法的优缺点。（5 分）
+
+**答案**:
+优点：代码简洁，适合分治问题（如树遍历、阶乘）。
+缺点：深度过深时栈溢出风险高，性能开销大（重复计算）。
+
+#### 9. 什么是垃圾回收（GC）？C# 和 Unity 中如何优化 GC？（5 分）
+
+**答案**:
+定义：自动回收不再使用的内存。
+优化方法：
+
+减少临时对象创建。
+使用对象池复用实例。
+避免在高频调用的方法中分配内存（如 Update）。
+
+#### 10. Unity 中如何实现资源加载（Resources.Load vs AssetBundle）？（5 分）
+
+**答案**:
+ Resources.Load：同步加载，从 Resources 文件夹加载，适合小资源。
+ AssetBundle：异步加载，支持资源分包和动态下载，适合大型项目。
+
+#### 11. 简述链表和数组的区别。（5 分）
+
+**答案**:
+数组：连续内存，随机访问快，增删慢。
+链表：非连续内存，增删快，随机访问慢。
+
+#### 12.  C# 中反射（Reflection）的作用是什么？有什么风险？（5 分）
+
+**答案**:
+作用：运行时获取类型信息，动态调用方法。
+风险：性能开销大，破坏封装性，可能导致安全漏洞。
+
+#### 13. Unity 中 Animator 控制器如何实现动画过渡？（5 分）
+
+**答案**:
+在 Animator 窗口创建状态机，添加动画 Clip。
+在状态间创建 Transition，设置触发条件（如布尔值参数）。
+通过脚本修改参数（如 animator.SetBool ("Run", true)）触发过渡。
+
+#### 14.  什么是依赖注入（Dependency Injection）？（5 分）
+
+**答案**:
+定义：将对象的依赖关系通过构造函数、属性等方式注入，而非内部创建。
+优点：解耦代码，提高可测试性和可维护性。
+
+#### 15.  简述 Unity 中的物理系统（Rigidbody、Collider）。（5 分）
+
+**答案**:
+ Rigidbody：使物体受物理引擎影响（重力、碰撞）。
+Collider：定义物体的碰撞边界，需与 Rigidbody 配合使用。
+
+#### 16. UGUI的事件系统由哪些部分组成？（5分）
+
+**答案**:
+EventSystem：全局管理器，处理所有事件逻辑。
+InputModule：输入处理器（如鼠标 / 触摸）。
+
+### 第1周第2套
+
+#### 1.  简述 GameObject 和 Component 的关系。（5 分）
+
+**答案**:
+ GameObject：场景中所有对象的基类，本身无行为。
+ Component：附加到 GameObject 上的功能模块（如 Transform、Renderer、Collider）。
+关系：GameObject 通过组合多个 Component 实现复杂功能。
+
+#### 2. 值类型和引⽤类型的区别是什么？（5分）
+
+**答案**:
+值类型：存储实际数据，栈分配。
+引用类型：存储引用，堆分配。
+
+#### 3. C# 中 string 和 StringBuilder 的区别是什么？在什么场景下优先使用 StringBuilder？。（5 分）
+
+**答案**:
+区别：string 是不可变类型，每次修改都会创建新的字符串对象，消耗内存；StringBuilder 是可变类型，修改时直接操作内部字符数组，不会创建新对象。
+优先使用 StringBuilder 的场景：需要频繁对字符串进行拼接、修改等操作时（如循环中拼接字符串），可减少内存开销和 GC 压力。
+
+#### 4.  重载和重写的区别是什么？（5分）
+
+**答案**:
+重载：同一类中方法名相同但参数不同。
+重写：子类覆盖父类的虚方法或抽象方法
+
+#### 5. 红点系统是如何初始化的？（5分）
+
+**答案**:
+注册监听节点，建立树状结构，数据变更时递归更新。
+
+#### 6. C#中的排序方式有哪些？（5分）
+
+**答案**:
+ Array.Sort()：数组排序。
+ List.Sort()：列表排序。
+ LINQ 的 OrderBy：查询语法排序。
+
+#### 7. Unity 中 Update、FixedUpdate 和 LateUpdate 的执行时机有何区别？（5分）
+
+**答案**:
+ Update：每帧执行一次，帧率不固定，依赖硬件性能，适合处理输入、逻辑判断等。
+ FixedUpdate：按固定时间间隔执行（默认 0.02 秒 / 次），与帧率无关，适合处理物理相关逻辑（如刚体运动）。
+ LateUpdate：在所有 Update 执行完后执行，适合跟随相机等需要在逻辑更新后执行的操作（如角色移动后调整相机位置）。
+
+#### 8. 为什么要使⽤List？List有什么优点。（5 分）
+
+**答案**:
+动态扩容，支持泛型，提供丰富 API（如排序、查找）
+
+#### 9. 构造方法和析构方法的区别是什么？（5分）
+
+**答案**:
+构造：初始化对象，可重载。
+析构：清理资源，由 GC 自动调用。
+
+#### 10. 接口在被结构体继承后会有什么问题？（5 分）
+
+**答案**:
+结构体值类型，继承接口时会装箱，影响性能。
+
+#### 11. 移动相机动作在哪个函数里，为什么在这个函数里？（5 分）
+
+**答案**:
+ LateUpdate()：确保在所有对象移动后执行，避免抖动。
+
+#### 12. 虚⽅法和抽象⽅法的区别是什么？（5分）
+
+**答案**:
+虚方法
+有默认实现，可被子类重写（Virtual 关键字）。
+非强制重写，子类可保持基类行为。
+抽象方法
+仅声明，无实现（abstract 关键字）。
+强制子类实现，否则子类需声明为抽象类。
+
+#### 13. 四元数和欧拉⻆的优缺点？（5分）
+
+**答案**:
+四元数
+优点：无万向节死锁，插值平滑，计算高效。
+缺点：直观性差，难以直接理解和编辑。
+欧拉角
+优点：直观易懂，便于手动调整。
+缺点：存在万向节死锁，插值可能不连贯。
+
+#### 14.  点乘和叉乘的区别？（5分）
+
+**答案**:
+点乘（标量）
+前后判断​：点乘结果正负 → 目标在自身前/后​（基于夹角余弦）。
+公式：Dot = 前向向量 · 目标方向向量
+叉乘（向量）
+左右判断​：叉乘结果Y分量正负 → 目标在自身左/右​（基于右手定则）。
+公式：Cross = 前向向量 × 目标方向向量
+
+#### 15. Image和RawImage的区别是什么？（5分）
+
+**答案**:
+Image：
+ UI 组件，依赖 Sprite。
+支持九宫格拉伸、精灵图集优化。
+适用于 UI 元素。
+RawImage：
+直接渲染 Texture，无需 Sprite 转换。
+性能略优，但功能较少。
+适用于动态纹理。
+
+#### 16.   结构体和类的区别 （5分）
+
+**答案**:
+结构体：值类型，栈分配，无继承。
+类：引用类型，堆分配，支持继承。
+
+### 第1周第3套
+
+#### 1.  简述 Unity 的生命周期函数执行顺序。（5 分）
+
+**答案**:
+1.Awake：对象初始化时调用（仅一次）。
+2.OnEnable：对象启用时调用。
+3.Start：首次帧更新前调用（仅一次）。
+4.Update：每帧调用。
+5.FixedUpdate：按固定物理时间步长调用。
+6.LateUpdate：所有 Update 后调用。
+7.OnDisable：对象禁用时调用。
+8.OnDestroy：对象销毁前调用。
+
+#### 2.  如何优化 Unity UI 的性能？（5 分）
+
+**答案**:
+减少 UI 元素的数量和层级深度。
+使用 Canvas Scaler 适配不同分辨率。
+避免 UI 元素频繁重建（如频繁修改布局）。
+将静态 UI 和动态 UI 分离到不同 Canvas。
+
+#### 3.  简述协程（Coroutine）和线程（Thread）的区别。（5 分）
+
+**答案**:
+协程：单线程，通过 yield 暂停执行，由 Unity 调度，适合轻量级异步操作。
+线程：多线程，可并行执行，但需注意线程安全，适合 CPU 密集型任务。
+
+#### 4.  简述 Unity 中的物理材质（Physics Material）。（5 分）
+
+**答案**:
+定义物体表面的物理属性（摩擦系数、弹性）。
+通过调整 Dynamic/Friction 和 Bounciness 改变物体碰撞行为。
+
+#### 5. 简述如何实现角色的动画状态机。（5 分）
+
+**答案**:
+在 Animator 窗口创建状态机，添加 Idle、Walk、Run、Jump 等状态。
+设置状态间的过渡条件（如 Speed、IsGrounded）。
+通过 Animator.SetFloat/SetBool 控制动画播放。
+
+#### 6. Unity 中 Start() 函数在什么时候执行？（5 分）
+
+**答案**:
+在脚本被启用后，第一次调用 Update() 之前执行，通常用于初始化操作。
+
+#### 7. 如何实现 3D 模型的骨骼动画？（5 分）
+
+**答案**:
+在 3D 建模软件中创建带骨骼的模型并绑定蒙皮。
+导入 Unity 后，Animator 组件控制动画播放。
+通过 Animation Clip 定义动画关键帧。
+
+#### 8. 树形结构怎么样去遍历？（5分）
+
+**答案**:
+深度优先（DFS）：递归或栈实现（先遍历子节点）。
+广度优先（BFS）：队列实现（按层遍历）。
+
+#### 9.  Unity 中 OnEnable 和 OnDisable 函数的触发时机是什么？与 Awake、Start 有何区别？（5 分）
+
+**答案**:
+触发时机：OnEnable 在对象激活（SetActive(true)）时调用；OnDisable 在对象禁用（SetActive(false)）时调用，可多次触发。
+区别：Awake 和 Start 仅在对象初始化时执行一次（Awake 早于 Start），与对象是否激活无关；而 OnEnable/OnDisable 与激活状态直接关联。
+
+#### 10.  如何实现游戏中的寻路系统？（5 分）
+
+**答案**:
+使用 Unity 的 NavMesh 系统：
+i.在 Navigation 窗口烘焙 NavMesh。
+ii.为角色添加 NavMeshAgent 组件。
+iii.设置目标点：agent.SetDestination (target.position)。
+
+#### 11. Unity 中 Transform 组件的主要作用是什么？（5 分）
+
+**答案**:
+控制游戏对象的位置、旋转和缩放，是每个游戏对象默认包含的核心组件。
+
+#### 12. 什么是栈（Stack）和队列（Queue）（5 分）
+
+**答案**:
+栈（Stack）
+是一种遵循 “后进先出”（LIFO，Last In First Out）原则的数据结构。
+队列（Queue）
+是一种遵循 “先进先出”（FIFO，First In First Out）原则的数据结构。
+
+#### 13.  静态构造函数？（5分）
+
+**答案**:
+类加载时自动调用一次，初始化静态成员。
+
+#### 14. 视口（Viewport）、屏幕（Screen）、世界（World）和局部（Local）这几个坐标系的有什么区别？（5分）
+
+**答案**:
+世界（World）：全局坐标系。
+局部（Local）：相对于父对象的坐标系。
+屏幕（Screen）：以像素为单位（左下角为原点）。
+视口（Viewport）：标准化屏幕坐标（左下角为 (0,0)，右上角为 (1,1)）。
+
+#### 15. new和malloc的区别是什么？（5分）
+
+**答案**:
+ new：C# 关键字，自动内存管理。
+ malloc：C/C++ 函数，需手动释放内存。
+
+#### 16. 什么是泛型？C# 中使用泛型有什么优点？（5分）
+
+**答案**:
+泛型：允许在定义类、方法、接口时不指定具体类型，而在使用时指定类型的机制（如 List<T>）。
+优点：
+提高代码复用性，无需为不同类型重复编写逻辑；
+编译时类型检查，减少类型转换错误；
+避免装箱拆箱操作，提升性能。
+
+### 第1周第4套
+
+#### 1. TCP 三次握手和四次挥手的过程是什么？（5 分）
+
+**答案**:
+三次握手（建立连接）
+1.客户端发请求连接，进入等待状态。
+2.服务器回同意连接，进入半连接状态。
+3.客户端回确认连接，双方进入连接状态，连接建立。
+四次挥手（断开连接）
+1.客户端发 请求关闭发送，进入等待。
+2.服务器回确认收到关闭请求，进入待关闭状态。
+3.服务器发自身也关闭发送，进入最后确认。
+4.客户端回确认收到，等待超时后关闭，服务器收到后直接关闭。
+
+#### 2.  简述 HTTP 和 HTTPS 的区别。（5 分）
+
+**答案**:
+ HTTP：明文传输，端口 80，无加密，安全性低。
+ HTTPS：基于 SSL/TLS 加密，端口 443，需 CA 证书验证身份，安全性高。
+
+#### 3.  快速排序的原理和时间复杂度是什么？（5 分）
+
+**答案**:
+原理：
+1.选择基准值（pivot），将数组分为两部分。
+2.小于基准的元素放左边，大于的放右边（分区操作）。
+3.递归排序左右子数组。
+时间复杂度：
+平均：O (n log n)
+最坏：O (n²)（基准选择不当）
+
+#### 4. 面向对象的三大特性是什么？请简要解释。（5 分）
+
+**答案**:
+封装：隐藏内部实现，仅暴露对外接口（如类的访问修饰符）。
+继承：子类继承父类的属性和方法，实现代码复用。
+多态：同一操作作用于不同对象产生不同结果（如方法重写、接口实现）。
+
+#### 5. 简述线程和进程的区别。（5 分）
+
+**答案**:
+进程：程序在操作系统中的一次执行实例，拥有独立内存空间。
+线程：进程内的执行单元，共享进程资源，切换开销小。
+
+#### 6. 二分查找如何实现？使用时有什么限制？（5分）
+
+**答案**:
+实现：在有序数组中，每次将搜索范围减半。
+限制：要求数据有序，适用于静态数据。
+
+#### 7. 简述索引的作用及优缺点。（5 分）
+
+**答案**:
+作用：提高数据库查询效率，加速 WHERE 过滤和 JOIN 操作。
+优点：查询速度快。
+缺点：占用存储空间，增删改时需维护索引，性能开销大。
+
+#### 8. Unity 中如何优化移动游戏性能？（5 分）
+
+**答案**:
+模型简化：降低多边形数量，使用 LOD。
+光照烘焙：静态场景使用预计算光照。
+减少 Draw Call：使用批处理（Batching）。
+避免 GC：减少临时对象，使用对象池。
+
+#### 9. C# 中委托（Delegate）和事件（Event）的区别是什么？（5 分）
+
+**答案**:
+委托：类型安全的函数指针，支持多播（多个方法绑定）。
+事件：基于委托的封装，限制外部访问（仅能通过 +=/-= 操作）。
+
+#### 10. 简述协程（Coroutine）的原理和应用场景。（5 分）
+
+**答案**:
+原理：
+可暂停执行的函数，通过 yield return 控制执行流程，由 Unity 引擎调度。
+应用场景：
+异步加载资源、延时执行、平滑动画。
+
+#### 11. 什么是设计模式？常见的设计模式有哪些？（5 分）
+
+**答案**:
+定义：解决反复出现的问题的通用解决方案。
+常见模式：
+单例模式（Singleton）：确保类仅有一个实例。
+工厂模式（Factory）：通过工厂创建对象。
+观察者模式（Observer）：对象间一对多依赖关系。
+策略模式（Strategy）：动态选择算法实现。
+
+#### 12. 简述 Socket 通信的基本流程。（5 分）
+
+**答案**:
+服务器端：
+1.创建 Socket，绑定 IP 和端口。
+2.监听连接（Listen）。
+3.接受客户端连接（Accept）。
+4.收发数据（Send/Receive）。
+客户端：
+1.创建 Socket，连接服务器（Connect）。
+2.收发数据。
+
+#### 13. Unity 中碰撞器（Collider）和触发器（Trigger）的区别是什么？（5 分）
+
+**答案**:
+碰撞器：产生物理碰撞，需 Rigidbody 组件，触发 OnCollisionEnter。
+触发器：仅检测碰撞，不产生物理效果，勾选 Is Trigger，触发 OnTriggerEnter。
+
+#### 14. 对象池是如何实现的？主要应用在哪些方面？（5分）
+
+**答案**:
+实现原理：
+1.预创建对象：初始化时创建一定数量的对象并缓存。
+2.取用与回收：需要时从池中获取，使用后归还而非销毁。
+3.动态扩展：若池为空可创建新对象，或限制最大数量
+
+#### 15.  简述数据库范式（1NF、2NF、3NF）。（5 分）
+
+**答案**:
+1NF：字段不可再分，确保原子性。
+2NF：满足 1NF，且非主属性完全依赖主键（消除部分依赖）。
+3NF：满足 2NF，且非主属性不传递依赖主键（消除传递依赖）。
+
+#### 16. Unity 中如何实现 UI 自适应分辨率？（5 分）
+
+**答案**:
+使用 Canvas Scaler 组件，设置为 “Scale With Screen Size”。
+合理使用 Anchor 和 Pivot 定位 UI 元素。
+用 Aspect Ratio Fitter 控制元素比例。
+针对异形屏使用 Safe Area 组件。
+
+第一单元：轨道基础操作
+	1.1 激活轨道
+		1.1.1 功能：控制物体显隐状态
+		1.1.2  核心属性：Post-Playback State（Active/Inactive/Revert/Leave As Is）
+		1.1.3 操作：轨道片段添加、锁定与属性调整
+	1.2 声音轨道
+		1.2.1 功能：管理音效资源播放
+		1.2.2 核心属性：Volume、Stereo Pan、Spatial Blend
+		1.2.3 应用：场景音效平滑过渡 
+	1.3 动画轨道
+		1.3.1 应用：场景音效平滑过渡
+		1.3.2 操作：混合效果设置（Ease In/Out）、片段叠加
+第二单元：轨道进阶应用
+	2.1 信号轨道
+		2.1.1 轨道进阶应用
+		2.1.2 轨道进阶应用
+		2.1.3 实践：代码监听信号执行逻辑
+	2.2 控制轨道
+		2.2.1 实践：代码监听信号执行逻辑
+		2.2.2 操作：轨道组（Track Group）管理
+	2.3 虚拟相机轨道
+		2.3.1 操作：轨道组（Track Group）管理
+		2.3.2  应用：镜头切换与动画同步
+第三单元：轨道（二）
+	1.信号轨道
+		1.1 添加信号轨道与发射器
+			1.1.1 创建 Signal Track 并绑定 Signal Receiver
+			1.1.2 设置发射时间、单次发射（Emit Once）、自定义信号 Asset
+		1.2 配置信号接收逻辑
+			1.2.1 添加 SignalReceiver 组件，绑定接收函数
+			1.2.2 自定义信号类（继承 SignalEmitter）与接收脚本（实现 INotificationReceiver）
+	2.控制轨道
+		2.1 物体显示控制
+			2.1.1 绑定场景物体或预制体，设置显隐逻辑
+			2.1.2 轨道参数：Start/End 时间、Post Playback 状态（Active/Revert 等）
+		2.2 嵌套 Timeline 控制
+			2.2.1 通过 Control Activation 勾选控制子 Timeline 的触发时机
+			2.2.2 轨道组（Track Group）管理多轨道协同
+第四单元：轨道（三）
+	1.Timeline 继承类
+		1.1 PlayableTrack
+			1.1.1 自定义轨道类（继承 PlayableTrack）
+			1.1.2 绑定类型与轨道颜色设置
+		1.2 PlayableBehavior
+			1.2.1 覆写 ProcessFrame 处理混合权重
+			1.2.2 playerData 转换绑定对象
+		1.3 PlayableAsset
+			1.3.1 覆写 CreatePlayable 关联 Behaviour
+			1.3.2 GetBehavior 动态设置参数
+	2.辅助选项操作
+		2.1 轨道锁定与静默
+		2.2 优先级调整与剪辑模式
+第五单元：片段
+	1.片段常规操作
+		1.1 复制 / 粘贴（Ctrl+C/V）、拆分（Split）、修剪（Trim Start/End）
+		1.2 调整播放速度（Double Speed/Half Speed）与循环（Loop）
+		1.3 关键帧操作：添加、删除、编辑切线（Clamped Auto/Free Smooth 等）
+	2.片段属性编辑
+		2.1 空白外推（Pre/Post Extrapolate）：Hold/Loop/Ping Pong 模式
+		2.2 淡入淡出（Ease In/Out Duration）与混合曲线（Blend Curves）
+		2.3 无限动画片段（Record 模式录制，Convert to Clip Track 转换）
+------------技能-------------
+发射子弹
+void Update()
+{
+	if (Input.GetMouseButtonDown(0))
+	{
+		Instantiate(Resources.Load<GameObject>("dan"), transform. position, transform. rotation);
+	}
+}
+随机生成敌人
+void Start()
+{
+	for(int i=0;i<5;i++)
+	{
+		int a = Random. Range(0, 10);
+		int b= Random.Range(0,20):
+		Instantiate(Resources.Load<GameObject>("ren"), new Vector3(a, 0, b), transform. rotation);
+	}
+}
+移动
+void Update()
+{
+	transform. position += transform. forward * Input. GetAxis("Vertical")* 10* Time. 	deltaTime；		transform. Rotate(0, Input.GetAxis("Horizontal")* speed * Time.deltaTime, 0);
+}
+敌人脚本
+private void OnTriggerEnter(Collider other）
+{
+	if(other.tag=="zd")
+	{
+		Destroy(game0bject):
+	}
+}
+子弹脚本
+void Start()
+{
+	Destroy(game0bject, 5f);
+}
+void Update()
+{
+	transform.position += transform.forward * 50 * Time. deltaTime.
+}
+
+创建xlsx表格填写后另存为utf-8格式放在resources里
+生成表脚本
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NPCTalk
+{
+    public int ID;//从1开始
+    public int Type;//用0，1代替有多余的人就继续增加
+    public string Content;//聊天内容
+}
+public class NPCTalkMgr
+{
+    public List<NPCTalk> talks = new List<NPCTalk>();
+    public void OnReadCSV()
+    {
+        TextAsset textAsset= Resources.Load<TextAsset>("Tables/NPCTalk");
+        if (textAsset != null)
+        {
+            string[] lines = textAsset.text.Split(new[] {"\r\n","\n"}, System.StringSplitOptions.None);
+          for (int i = 1; i < lines.Length; i++)
+            {
+                Debug.Log(lines[i]);
+                string[] cols = lines[i].Split(',');
+                NPCTalk nPCTalk = new NPCTalk();
+                int.TryParse(cols[0], out nPCTalk.ID);
+                int.TryParse(cols[1], out nPCTalk.Type);
+                nPCTalk.Content = cols[2];
+                talks.Add(nPCTalk);
+                Debug.Log(nPCTalk.ID + " " + nPCTalk.Type + " " + nPCTalk.Content);
+            }
+        }
+    }
+}
+
+对话脚本（拖拽到空物体上）把两个对应预制体拖到组件上
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class KaoShiZhuanYong : MonoBehaviour
+{
+    public Transform NPCTalk1;
+    public Transform NPCTalk2;
+    private NPCTalkMgr talkMgr;
+    // Start is called before the first frame update
+    void Start()
+    {
+        talkMgr = new NPCTalkMgr();//对象
+        talkMgr.OnReadCSV();//调用方法
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        OnShowNPCTalk();
+    }
+    private int index;
+    private void OnShowNPCTalk()
+    {
+        List<NPCTalk> talks = talkMgr.talks;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            NPCTalk nPCTalk = talks[index];
+            if ( nPCTalk.Type==0)
+            {
+                Text text = NPCTalk1.Find("Text").GetComponent<Text>();
+                text.text = nPCTalk.Content;
+            }
+            if (nPCTalk.Type == 1)
+            {
+                Text text = NPCTalk2.Find("Text").GetComponent<Text>();
+                text.text = nPCTalk.Content;
+            }
+            index++;
+        }
+    }
+}
